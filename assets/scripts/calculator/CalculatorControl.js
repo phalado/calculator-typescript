@@ -4,12 +4,13 @@ import Screen from "./Screen.js";
 export default class CalculatorControl {
     screen;
     operation;
+    dateTime;
     constructor(screen = new Screen(), operation = new Operation({
         onCalculated: (result) => this.screen.content = result
-    })) {
+    }), dateTime = new DateTime()) {
         this.screen = screen;
         this.operation = operation;
-        new DateTime;
+        this.dateTime = dateTime;
         this.eventsButtons();
     }
     static NUMBER_BUTTONS = [
@@ -20,11 +21,16 @@ export default class CalculatorControl {
     ];
     defaultOptions = {
         ponto: () => console.log('ponto'),
-        limpar: () => console.log('limpar'),
+        limpar: () => this.clean(),
         desfazer: () => console.log("desfazer"),
         porcentagem: () => console.log('porcentagem'),
         igual: () => this.calculate()
     };
+    clean() {
+        this.operation.clean();
+        this.screen.content = "0";
+        this.dateTime.symbol = "";
+    }
     calculate() {
         this.operation.calculate();
     }
@@ -40,6 +46,7 @@ export default class CalculatorControl {
                 this.addOperation("0");
             this.addOperation(operator);
         }
+        this.dateTime.symbol = operator;
     }
     addNumber(number) {
         if (isNaN(Number(this.operation.lastPosition))) {

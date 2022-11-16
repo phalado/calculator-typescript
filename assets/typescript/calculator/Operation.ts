@@ -28,6 +28,10 @@ export default class Operation {
     return result
   }
 
+  clean(): void {
+    this.operation = []
+  }
+
   calculate(): void {
     let result = this.getResult();
 

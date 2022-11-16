@@ -7,9 +7,9 @@ export default class CalculatorControl {
     private screen = new Screen(),
     private operation = new Operation({
       onCalculated: (result: string) => this.screen.content = result
-    })
+    }),
+    private dateTime = new DateTime()
   ) {
-    new DateTime
     this.eventsButtons();
   }
 
@@ -23,10 +23,16 @@ export default class CalculatorControl {
   
   defaultOptions: Object = {
     ponto: () => console.log('ponto'),
-    limpar: () => console.log('limpar'),
+    limpar: () => this.clean(),
     desfazer: () => console.log("desfazer"),
     porcentagem: () => console.log('porcentagem'),
     igual: () => this.calculate()
+  }
+
+  clean(): void {
+    this.operation.clean();
+    this.screen.content = "0"
+    this.dateTime.symbol = ""
   }
 
   calculate(): void {
@@ -42,9 +48,11 @@ export default class CalculatorControl {
       this.operation.lastPosition = operator;
     } else {
       if (this.operation.length === 0) this.addOperation("0")
-
+      
       this.addOperation(operator)
     }
+
+    this.dateTime.symbol = operator;
   }
 
   addNumber(number: number): void {

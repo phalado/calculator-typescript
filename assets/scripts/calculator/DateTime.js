@@ -1,9 +1,11 @@
 export default class DateTime {
     elementDate;
     elementTime;
-    constructor(elementDate = document.querySelector("#datetime > div:nth-child(2)"), elementTime = document.querySelector("#datetime time")) {
+    elementSymbol;
+    constructor(elementDate = document.querySelector("#full-date"), elementTime = document.querySelector("#datetime time"), elementSymbol = document.querySelector("#operation-symbol")) {
         this.elementDate = elementDate;
         this.elementTime = elementTime;
+        this.elementSymbol = elementSymbol;
         this.renderizar();
         setInterval(() => this.renderizar(), 1000);
     }
@@ -25,6 +27,11 @@ export default class DateTime {
     set time(content) {
         if (this.elementTime)
             this.elementTime.innerHTML = content;
+    }
+    set symbol(content) {
+        console.log(content);
+        if (this.elementSymbol)
+            this.elementSymbol.innerHTML = content;
     }
 }
 //# sourceMappingURL=DateTime.js.map

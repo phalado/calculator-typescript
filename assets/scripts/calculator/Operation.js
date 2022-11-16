@@ -20,6 +20,9 @@ export default class Operation {
         }
         return result;
     }
+    clean() {
+        this.operation = [];
+    }
     calculate() {
         let result = this.getResult();
         if (result.length > 12)

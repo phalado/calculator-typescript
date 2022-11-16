@@ -1,7 +1,8 @@
 export default class DateTime {
   constructor(
-    private elementDate: HTMLDivElement | null = document.querySelector("#datetime > div:nth-child(2)"),
-    private elementTime: HTMLTimeElement | null = document.querySelector("#datetime time")
+    private elementDate: HTMLDivElement | null = document.querySelector("#full-date"),
+    private elementTime: HTMLTimeElement | null = document.querySelector("#datetime time"),
+    private elementSymbol: HTMLTimeElement | null = document.querySelector("#operation-symbol")
   ) {
     this.renderizar();
     setInterval(() => this.renderizar(), 1000)
@@ -26,5 +27,10 @@ export default class DateTime {
 
   set time(content: string) {
     if (this.elementTime) this.elementTime.innerHTML = content
+  }
+
+  set symbol(content: string) {
+    console.log(content)
+    if (this.elementSymbol) this.elementSymbol.innerHTML = content
   }
 }
