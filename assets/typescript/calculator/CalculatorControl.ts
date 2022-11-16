@@ -22,7 +22,7 @@ export default class CalculatorControl {
   ]
   
   defaultOptions: Object = {
-    ponto: () => console.log('ponto'),
+    ponto: () => this.addPoint(),
     limpar: () => this.clean(),
     desfazer: () => console.log("desfazer"),
     porcentagem: () => console.log('porcentagem'),
@@ -37,6 +37,7 @@ export default class CalculatorControl {
 
   calculate(): void {
     this.operation.calculate();
+    this.dateTime.symbol = ""
   }
 
   addOperation(value: string): void {
@@ -63,6 +64,19 @@ export default class CalculatorControl {
       this.operation.lastPosition = number.toString();
     }
 
+    this.screen.content = number.toString()
+  }
+
+  addPoint(): void {
+    let number: string;
+
+    if (isNaN(Number(this.operation.lastPosition))) {
+      number = "0."
+    } else {
+      number = this.operation.lastPosition.toString() + "."
+    }
+    
+    this.addOperation(number)
     this.screen.content = number.toString()
   }
 

@@ -29,7 +29,6 @@ export default class DateTime {
             this.elementTime.innerHTML = content;
     }
     set symbol(content) {
-        console.log(content);
         if (this.elementSymbol)
             this.elementSymbol.innerHTML = content;
     }

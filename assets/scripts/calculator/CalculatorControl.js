@@ -20,7 +20,7 @@ export default class CalculatorControl {
         'adicao', 'subtracao', 'divisao', 'multiplicacao'
     ];
     defaultOptions = {
-        ponto: () => console.log('ponto'),
+        ponto: () => this.addPoint(),
         limpar: () => this.clean(),
         desfazer: () => console.log("desfazer"),
         porcentagem: () => console.log('porcentagem'),
@@ -33,6 +33,7 @@ export default class CalculatorControl {
     }
     calculate() {
         this.operation.calculate();
+        this.dateTime.symbol = "";
     }
     addOperation(value) {
         this.operation.add(value);
@@ -56,6 +57,17 @@ export default class CalculatorControl {
             number = Number(this.operation.lastPosition.toString() + number.toString());
             this.operation.lastPosition = number.toString();
         }
+        this.screen.content = number.toString();
+    }
+    addPoint() {
+        let number;
+        if (isNaN(Number(this.operation.lastPosition))) {
+            number = "0.";
+        }
+        else {
+            number = this.operation.lastPosition.toString() + ".";
+        }
+        this.addOperation(number);
         this.screen.content = number.toString();
     }
     eventsButtons() {

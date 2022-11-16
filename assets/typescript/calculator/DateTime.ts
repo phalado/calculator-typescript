@@ -30,7 +30,6 @@ export default class DateTime {
   }
 
   set symbol(content: string) {
-    console.log(content)
     if (this.elementSymbol) this.elementSymbol.innerHTML = content
   }
 }
