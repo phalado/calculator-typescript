@@ -32,6 +32,10 @@ export default class Operation {
     this.operation = []
   }
 
+  undo(): void {
+    this.operation.pop();
+  }
+
   calculate(): void {
     let result = this.getResult();
 

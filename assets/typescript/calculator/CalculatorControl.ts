@@ -24,7 +24,7 @@ export default class CalculatorControl {
   defaultOptions: Object = {
     ponto: () => this.addPoint(),
     limpar: () => this.clean(),
-    desfazer: () => console.log("desfazer"),
+    desfazer: () => this.undo(),
     porcentagem: () => console.log('porcentagem'),
     igual: () => this.calculate()
   }
@@ -33,6 +33,20 @@ export default class CalculatorControl {
     this.operation.clean();
     this.screen.content = "0"
     this.dateTime.symbol = ""
+  }
+
+  undo(): void {
+    if(this.operation.lastPosition === "0") return
+
+    if (isNaN(Number(this.operation.lastPosition))) {
+      this.operation.undo();
+      this.dateTime.symbol = ""
+    } else {
+      const str: string = this.operation.lastPosition
+      this.operation.lastPosition = str.substring(0, str.length - 1)
+      this.screen.content = this.operation.lastPosition
+    }
+
   }
 
   calculate(): void {

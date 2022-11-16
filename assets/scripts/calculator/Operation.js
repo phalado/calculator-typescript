@@ -23,6 +23,9 @@ export default class Operation {
     clean() {
         this.operation = [];
     }
+    undo() {
+        this.operation.pop();
+    }
     calculate() {
         let result = this.getResult();
         if (result.length > 12)
