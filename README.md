@@ -2,7 +2,7 @@
 
 This web app is a simple calculator done with TypeScript.
 
-<!-- <h1 align="center"><img src="https://raw.githack.com/phalado/termo-consulta/main/public/initial.png"></h1> -->
+<h1 align="center"><img src="https://rawcdn.githack.com/phalado/calculator-typescript/c5f2957650792adb41dbb5bbd2624b1568531da1/assets/images/screen1.png"></h1>
 
 ## Table of contents
 
