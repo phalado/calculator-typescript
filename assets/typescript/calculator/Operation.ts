@@ -55,6 +55,14 @@ export default class Operation {
     this.operation[lastIndex] = value
   }
 
+  get firstPosition(): string {
+    return this.operation[0]
+  }
+
+  get secondPosition(): string {
+    return this.operation[1]
+  }
+
   get length(): number {
     return this.operation.length
   }

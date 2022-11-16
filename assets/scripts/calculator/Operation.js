@@ -40,6 +40,12 @@ export default class Operation {
         const lastIndex = this.operation.length ? this.operation.length - 1 : 0;
         this.operation[lastIndex] = value;
     }
+    get firstPosition() {
+        return this.operation[0];
+    }
+    get secondPosition() {
+        return this.operation[1];
+    }
     get length() {
         return this.operation.length;
     }

@@ -23,7 +23,7 @@ export default class CalculatorControl {
         ponto: () => this.addPoint(),
         limpar: () => this.clean(),
         desfazer: () => this.undo(),
-        porcentagem: () => console.log('porcentagem'),
+        porcentagem: () => this.percent(),
         igual: () => this.calculate()
     };
     clean() {
@@ -47,6 +47,20 @@ export default class CalculatorControl {
     calculate() {
         this.operation.calculate();
         this.dateTime.symbol = "";
+    }
+    percent() {
+        if (this.operation.length < 3) {
+            this.addOperator('/');
+            this.addNumber(100);
+        }
+        else if (this.operation.secondPosition === "*") {
+            this.operation.lastPosition = (Number(this.operation.lastPosition) / 100).toString();
+        }
+        else {
+            const number = (Number(this.operation.lastPosition) * 100) / Number(this.operation.firstPosition);
+            this.operation.lastPosition = number.toString();
+        }
+        this.calculate();
     }
     addOperation(value) {
         this.operation.add(value);
